@@ -67,7 +67,9 @@
 </style>
 </head>
 <body>
-  <audio id="bgMusic" src="song.mp3" preload="auto"></audio>
+  <!-- ✅ LOOP attribute added here -->
+  <audio id="bgMusic" src="song.mp3" preload="auto" loop></audio>
+
   <div class="hearts"></div>
   <canvas id="balloonCanvas"></canvas>
 
@@ -195,7 +197,7 @@ function startCelebration(){
   draw();
 }
 
-// --- soft music autoplay after tap ---
+// --- soft looping music autoplay after tap ---
 document.body.addEventListener('click',()=>{
   const music=document.getElementById('bgMusic');
   music.volume=0;
