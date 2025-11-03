@@ -76,9 +76,18 @@
   }
 
   .countdown {
-    font-size: 1.8em;
+    font-size: 2.5em;
+    font-weight: bold;
     color: #ff9dbb;
-    margin: 15px 0;
+    text-shadow: 0 0 15px #ff9dbb;
+    margin: 20px 0;
+    letter-spacing: 2px;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #ff80a8; }
+    to { text-shadow: 0 0 25px #ffbfd2; }
   }
 </style>
 </head>
@@ -117,7 +126,7 @@
   <!-- Countdown Page -->
   <div id="countdownPage" class="hidden">
     <h1>Countdown for Something Special 🎂</h1>
-    <div class="countdown" id="timer">Loading...</div>
+    <div class="countdown" id="timer">00d 00h 00m 00s</div>
     <p>Bby wait for Countdown to be Completed 💝</p>
     <img class="gif" src="https://media.tenor.com/mtYhLCGltwIAAAAj/bunny-waiting.gif">
   </div>
@@ -189,7 +198,7 @@
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        timer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
     }, 1000);
   }
