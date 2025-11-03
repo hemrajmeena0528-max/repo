@@ -5,14 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Hey Babe 💞</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
 
   body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(180deg, #1b1b1b, #000);
     color: #fff;
-    font-family: 'Quicksand', sans-serif;
+    font-family: 'Poppins', sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,25 +76,19 @@
   }
 
   .countdown {
-    font-size: 2.5em;
+    font-size: 3em;
     font-weight: bold;
-    color: #ff9dbb;
-    text-shadow: 0 0 15px #ff9dbb;
-    margin: 20px 0;
-    letter-spacing: 2px;
-    animation: glow 2s ease-in-out infinite alternate;
-  }
-
-  @keyframes glow {
-    from { text-shadow: 0 0 10px #ff80a8; }
-    to { text-shadow: 0 0 25px #ffbfd2; }
+    color: #ff99bb;
+    text-shadow: 0 0 25px #ff99bb, 0 0 50px #ff66aa;
+    margin: 25px 0;
+    letter-spacing: 3px;
   }
 </style>
 </head>
 <body>
   <audio id="bgMusic" src="song.mp3" loop></audio>
 
-  <!-- Start screen -->
+  <!-- Start -->
   <div id="startScreen">
     <h1>💖 Tap Anywhere to Begin 💖</h1>
   </div>
@@ -126,12 +120,12 @@
   <!-- Countdown Page -->
   <div id="countdownPage" class="hidden">
     <h1>Countdown for Something Special 🎂</h1>
-    <div class="countdown" id="timer">00d 00h 00m 00s</div>
+    <div id="timer" class="countdown">Loading...</div>
     <p>Bby wait for Countdown to be Completed 💝</p>
     <img class="gif" src="https://media.tenor.com/mtYhLCGltwIAAAAj/bunny-waiting.gif">
   </div>
 
-  <!-- Final Birthday Page -->
+  <!-- Birthday Page -->
   <div id="birthdayPage" class="hidden">
     <h1 style="color: gold;">Happy Birthday Bby ❤️</h1>
     <p>
@@ -146,7 +140,7 @@
   const startScreen = document.getElementById("startScreen");
   const music = document.getElementById("bgMusic");
 
-  // Start on tap
+  // Start the experience
   document.body.addEventListener("click", () => {
     startScreen.classList.add("hidden");
     document.getElementById("page1").classList.remove("hidden");
@@ -168,7 +162,7 @@
     });
   }
 
-  // Floating hearts animation
+  // Floating hearts
   function spawnHearts() {
     setInterval(() => {
       const heart = document.createElement("div");
@@ -181,18 +175,18 @@
     }, 600);
   }
 
-  // Countdown function
+  // Countdown logic
   function startCountdown() {
-    const countDownDate = new Date("Nov 5, 2025 00:00:00").getTime();
     const timer = document.getElementById("timer");
+    const targetDate = new Date("Nov 5, 2025 00:00:00").getTime();
 
-    const interval = setInterval(function() {
+    const interval = setInterval(() => {
       const now = new Date().getTime();
-      const distance = countDownDate - now;
+      const distance = targetDate - now;
 
       if (distance <= 0) {
         clearInterval(interval);
-        nextPage('birthdayPage');
+        nextPage("birthdayPage");
       } else {
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
