@@ -6,7 +6,7 @@
 <title>Hey Babe 💞</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap');
-
+  * { box-sizing: border-box; }
   body {
     margin: 0;
     height: 100vh;
@@ -20,21 +20,17 @@
     flex-direction: column;
     text-align: center;
   }
-
   .hidden { display: none; }
-
   h1 {
     font-size: 1.8em;
     margin-bottom: 1em;
     color: #ffb6c1;
   }
-
   p {
     font-size: 1.2em;
     color: #ffdce0;
     line-height: 1.6;
   }
-
   button {
     background-color: #ff6fa3;
     border: none;
@@ -47,12 +43,10 @@
     box-shadow: 0 0 10px rgba(255, 111, 163, 0.7);
     transition: all 0.3s ease;
   }
-
   button:hover {
     background-color: #ff85b6;
     transform: scale(1.05);
   }
-
   .gif {
     width: 150px;
     height: 150px;
@@ -60,7 +54,6 @@
     border-radius: 20px;
     object-fit: cover;
   }
-
   .heart {
     position: absolute;
     color: #ffb6c1;
@@ -68,79 +61,71 @@
     animation: floatUp 6s linear infinite;
     opacity: 0.6;
   }
-
   @keyframes floatUp {
     0% { transform: translateY(0) scale(1); opacity: 0; }
     20% { opacity: 1; }
     100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
   }
-
   .countdown {
     font-size: 3em;
     font-weight: bold;
-    color: #ff99bb;
-    text-shadow: 0 0 25px #ff99bb, 0 0 50px #ff66aa;
+    color: #ff66aa;
+    text-shadow: 0 0 15px #ff66aa, 0 0 25px #ff99cc;
     margin: 25px 0;
     letter-spacing: 3px;
   }
 </style>
 </head>
 <body>
-  <audio id="bgMusic" src="song.mp3" loop></audio>
+<audio id="bgMusic" src="song.mp3" loop></audio>
 
-  <!-- Start -->
-  <div id="startScreen">
-    <h1>💖 Tap Anywhere to Begin 💖</h1>
-  </div>
+<div id="startScreen">
+  <h1>💖 Tap Anywhere to Begin 💖</h1>
+</div>
 
-  <!-- Page 1 -->
-  <div id="page1" class="hidden">
-    <h1>Hey babe, do you wanna see what I made? 🥰</h1>
-    <button onclick="nextPage('page2')">Yes</button>
-    <button onclick="noClicked('page1')">No</button>
-    <img class="gif" src="https://media.tenor.com/d3gQbEGSmMYAAAAj/molang-happy.gif">
-  </div>
+<div id="page1" class="hidden">
+  <h1>Hey babe, do you wanna see what I made? 🥰</h1>
+  <button onclick="nextPage('page2')">Yes</button>
+  <button onclick="noClicked('page1')">No</button>
+  <img class="gif" src="https://media.tenor.com/d3gQbEGSmMYAAAAj/molang-happy.gif">
+</div>
 
-  <!-- Page 2 -->
-  <div id="page2" class="hidden">
-    <h1>At first tell me, do you love me? 💕</h1>
-    <button onclick="nextPage('page3')">Yes</button>
-    <button onclick="noClicked('page2')">No</button>
-    <img class="gif" src="https://media.tenor.com/NR2NoL9mJWgAAAAj/bunny-love.gif">
-  </div>
+<div id="page2" class="hidden">
+  <h1>At first tell me, do you love me? 💕</h1>
+  <button onclick="nextPage('page3')">Yes</button>
+  <button onclick="noClicked('page2')">No</button>
+  <img class="gif" src="https://media.tenor.com/NR2NoL9mJWgAAAAj/bunny-love.gif">
+</div>
 
-  <!-- Page 3 -->
-  <div id="page3" class="hidden">
-    <h1>Awww Bby Thank you for loving me 🥰</h1>
-    <p>I Love You So Much Bby 💝</p>
-    <button onclick="nextPage('countdownPage')">Next</button>
-    <img class="gif" src="https://media.tenor.com/xTjKwrz8vBYAAAAj/cute-love.gif">
-  </div>
+<div id="page3" class="hidden">
+  <h1>Awww Bby Thank you for loving me 🥰</h1>
+  <p>I Love You So Much Bby 💝</p>
+  <button onclick="nextPage('countdownPage')">Next</button>
+  <img class="gif" src="https://media.tenor.com/xTjKwrz8vBYAAAAj/cute-love.gif">
+</div>
 
-  <!-- Countdown Page -->
-  <div id="countdownPage" class="hidden">
-    <h1>Countdown for Something Special 🎂</h1>
-    <div id="timer" class="countdown">Loading...</div>
-    <p>Bby wait for Countdown to be Completed 💝</p>
-    <img class="gif" src="https://media.tenor.com/mtYhLCGltwIAAAAj/bunny-waiting.gif">
-  </div>
+<div id="countdownPage" class="hidden">
+  <h1>Countdown for Something Special 🎂</h1>
+  <div id="timer" class="countdown">00d 00h 00m 00s</div>
+  <p>Bby wait for Countdown to be Completed 💝</p>
+  <img class="gif" src="https://media.tenor.com/mtYhLCGltwIAAAAj/bunny-waiting.gif">
+</div>
 
-  <!-- Birthday Page -->
-  <div id="birthdayPage" class="hidden">
-    <h1 style="color: gold;">Happy Birthday Bby ❤️</h1>
-    <p>
-      You are the most beautiful gift in my life 😚.<br>
-      You’re my favorite person, my safe place, and my sweetest feeling 🥰.<br>
-      I hope today gives you as much happiness as you give me every single day 💝.
-    </p>
-    <img class="gif" src="https://media.tenor.com/3WeW-n7OcjsAAAAj/bunny-hug.gif">
-  </div>
+<div id="birthdayPage" class="hidden">
+  <h1 style="color: gold;">Happy Birthday Bby ❤️</h1>
+  <p>
+    You are the most beautiful gift in my life 😚.<br>
+    You’re my favorite person, my safe place, and my sweetest feeling 🥰.<br>
+    I hope today gives you as much happiness as you give me every single day 💝.
+  </p>
+  <img class="gif" src="https://media.tenor.com/3WeW-n7OcjsAAAAj/bunny-hug.gif">
+</div>
 
 <script>
-  const startScreen = document.getElementById("startScreen");
+document.addEventListener("DOMContentLoaded", function() {
   const music = document.getElementById("bgMusic");
+  const startScreen = document.getElementById("startScreen");
 
-  // Start the experience
   document.body.addEventListener("click", () => {
     startScreen.classList.add("hidden");
     document.getElementById("page1").classList.remove("hidden");
@@ -148,21 +133,19 @@
     spawnHearts();
   }, { once: true });
 
-  function nextPage(id) {
+  window.nextPage = function(id) {
     document.querySelectorAll("div").forEach(div => div.classList.add("hidden"));
     document.getElementById(id).classList.remove("hidden");
-
     if (id === "countdownPage") startCountdown();
   }
 
-  function noClicked(current) {
+  window.noClicked = function(current) {
     const btns = document.querySelectorAll(`#${current} button`);
     btns.forEach(btn => {
       if (btn.innerText === "No") btn.remove();
     });
   }
 
-  // Floating hearts
   function spawnHearts() {
     setInterval(() => {
       const heart = document.createElement("div");
@@ -175,7 +158,6 @@
     }, 600);
   }
 
-  // Countdown logic
   function startCountdown() {
     const timer = document.getElementById("timer");
     const targetDate = new Date("Nov 5, 2025 00:00:00").getTime();
@@ -196,6 +178,7 @@
       }
     }, 1000);
   }
+});
 </script>
 </body>
 </html>
