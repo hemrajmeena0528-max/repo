@@ -79,10 +79,12 @@
 <body>
 <audio id="bgMusic" src="song.mp3" loop></audio>
 
+<!-- Start Screen -->
 <div id="startScreen">
   <h1>💖 Tap Anywhere to Begin 💖</h1>
 </div>
 
+<!-- Page 1 -->
 <div id="page1" class="hidden">
   <h1>Hey babe, do you wanna see what I made? 🥰</h1>
   <button onclick="nextPage('page2')">Yes</button>
@@ -90,6 +92,7 @@
   <img class="gif" src="https://media.tenor.com/d3gQbEGSmMYAAAAj/molang-happy.gif">
 </div>
 
+<!-- Page 2 -->
 <div id="page2" class="hidden">
   <h1>At first tell me, do you love me? 💕</h1>
   <button onclick="nextPage('page3')">Yes</button>
@@ -97,6 +100,7 @@
   <img class="gif" src="https://media.tenor.com/NR2NoL9mJWgAAAAj/bunny-love.gif">
 </div>
 
+<!-- Page 3 -->
 <div id="page3" class="hidden">
   <h1>Awww Bby Thank you for loving me 🥰</h1>
   <p>I Love You So Much Bby 💝</p>
@@ -104,13 +108,15 @@
   <img class="gif" src="https://media.tenor.com/xTjKwrz8vBYAAAAj/cute-love.gif">
 </div>
 
+<!-- Countdown Page -->
 <div id="countdownPage" class="hidden">
   <h1>Countdown for Something Special 🎂</h1>
-  <div id="timer" class="countdown">00d 00h 00m 00s</div>
+  <div id="timer" class="countdown">Loading...</div>
   <p>Bby wait for Countdown to be Completed 💝</p>
   <img class="gif" src="https://media.tenor.com/mtYhLCGltwIAAAAj/bunny-waiting.gif">
 </div>
 
+<!-- Birthday Page -->
 <div id="birthdayPage" class="hidden">
   <h1 style="color: gold;">Happy Birthday Bby ❤️</h1>
   <p>
@@ -122,10 +128,11 @@
 </div>
 
 <script>
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("bgMusic");
   const startScreen = document.getElementById("startScreen");
 
+  // Tap to start
   document.body.addEventListener("click", () => {
     startScreen.classList.add("hidden");
     document.getElementById("page1").classList.remove("hidden");
@@ -133,18 +140,16 @@ document.addEventListener("DOMContentLoaded", function() {
     spawnHearts();
   }, { once: true });
 
-  window.nextPage = function(id) {
+  window.nextPage = (id) => {
     document.querySelectorAll("div").forEach(div => div.classList.add("hidden"));
     document.getElementById(id).classList.remove("hidden");
     if (id === "countdownPage") startCountdown();
-  }
+  };
 
-  window.noClicked = function(current) {
-    const btns = document.querySelectorAll(`#${current} button`);
-    btns.forEach(btn => {
-      if (btn.innerText === "No") btn.remove();
-    });
-  }
+  window.noClicked = (current) => {
+    const noBtn = document.querySelector(`#${current} button:nth-of-type(2)`);
+    if (noBtn) noBtn.remove();
+  };
 
   function spawnHearts() {
     setInterval(() => {
@@ -160,23 +165,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function startCountdown() {
     const timer = document.getElementById("timer");
-    const targetDate = new Date("Nov 5, 2025 00:00:00").getTime();
+    const target = new Date("Nov 5, 2025 00:00:00").getTime();
 
-    const interval = setInterval(() => {
+    function updateCountdown() {
       const now = new Date().getTime();
-      const distance = targetDate - now;
+      const distance = target - now;
 
       if (distance <= 0) {
-        clearInterval(interval);
+        timer.textContent = "00d 00h 00m 00s";
         nextPage("birthdayPage");
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        return;
       }
-    }, 1000);
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      timer.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown(); // show immediately
+    setInterval(updateCountdown, 1000);
   }
 });
 </script>
